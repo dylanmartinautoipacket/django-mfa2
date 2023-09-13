@@ -1,0 +1,12 @@
+
+{% extends 'admin/change_list.html' %}
+ {% block object-tools-items %}
+     {{ block.super }}
+ {% if help_text %}<p>{{ help_text }}</p>{% endif %}
+     {% if link_text %}
+         <form action="{{ url }}">
+            <input type="submit" value="{{ link_text }}" />
+        </form>
+     {% endif %}
+ {% endblock %}
+

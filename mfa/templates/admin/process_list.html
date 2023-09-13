@@ -1,0 +1,15 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+    {% for process in processes %}
+        <div>
+            <label>{{ process.label }}:</label>
+            <br />
+            <form action="{{ process.action }}" method="{{ process.method }}">
+                {{ process.form }}
+                <input type="submit" value="Submit"/>
+            </form>
+        </div>
+        <br />
+    {% endfor %}
+{% endblock %}

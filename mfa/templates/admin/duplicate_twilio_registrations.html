@@ -1,0 +1,39 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+    <div>
+    <span>Profiles with duplicated emails:</span>
+    <br />
+    {% for profile in duplicate_emails %}
+        <span>{{ profile.friendly_name }}</span>
+        <br />
+        <form action="/admin/twilio-registration-update/{{ profile.sid }}/" method="post">
+            <input name="email" type="text" value="{{ profile.email }}" />
+            <br />
+            <input type="submit" value="Submit" />
+        </form>
+        <br />
+    {% endfor %}
+    </div>
+    <div>
+    <span>Profiles with duplicated addresses:</span>
+    <br />
+    {% for profile in duplicate_addresses %}
+        <span>{{ profile.friendly_name }}</span>
+        <br />
+        <form action="/admin/twilio-registration-update/{{ profile.sid }}/" method="post">
+            <input name="street" type="text" value="{{ profile.address.street }}" />
+            <br />
+            <input name="city" type="text" value="{{ profile.address.city }}" />
+            <br />
+            <input name="region" type="text" value="{{ profile.address.region }}" />
+            <br />
+            <input name="postal_code" type="text" value="{{ profile.address.postal_code }}" />
+            <br />
+            <input type="submit" value="Submit" />
+            <br />
+        </form>
+        <br />
+    {% endfor %}
+    </div>
+{% endblock %}

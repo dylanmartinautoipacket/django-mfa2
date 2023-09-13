@@ -1,0 +1,31 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+    <div>
+        <form method="get" action="/admin/processes">
+            <button type="submit">Return to Process List</button>
+        </form>
+        <br />
+        <form method="get" action="https://app.datadoghq.com/logs/livetail">
+            <input type="hidden" name="query" value="@process_id:{{ process_id }}"/>
+            <input type="hidden" name="cols" value="host%2Cservice"/>
+            <input type="hidden" name="index" value=""/>
+            <input type="hidden" name="messageDisplay" value="inline"/>
+            <input type="hidden" name="stream_sort" value="time%2Cdesc"/>
+            <input type="hidden" name="live" value="true"/>
+            <button type="submit">View live logs</button>
+        </form>
+        <br />
+        <form method="get" action="https://app.datadoghq.com/logs">
+            <input type="hidden" name="query" value="@process_id:{{ process_id }}"/>
+            <input type="hidden" name="cols" value="host%2Cservice"/>
+            <input type="hidden" name="index" value=""/>
+            <input type="hidden" name="messageDisplay" value="inline"/>
+            <input type="hidden" name="stream_sort" value="time%2Cdesc"/>
+            <input type="hidden" name="from_ts" value="{{ from_time }}"/>
+            <input type="hidden" name="to_ts" value="{{ to_time }}"/>
+            <input type="hidden" name="live" value="false"/>
+            <button type="submit">View past 30 days logs</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "admin/change_form.html" %}
+{% block form_top %}
+    {{ block.super }}
+    {% if warning_text %}<h2 style="color:red;">{{ warning_text }}</h2>{% endif %}
+    {% if help_text %}<p>{{ help_text }}</p>{% endif %}
+    {% if url %}
+        <a href="{{ url }}" class="button" style="font-size:1.5vw;">{{ link_text }} &#128214</a>
+    {% endif %}
+{% endblock %}
+{% block admin_change_form_document_ready %}
+    {{ block.super }}
+    {% if extra_javascripts %}
+        {% for script in extra_javascripts %}
+            {{ script }}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+

@@ -1,0 +1,32 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+    <h1> Vehicle Vital Score Comparison Tool </h1>
+    <hr>
+    <div>
+        <p>
+            Please Enter Vehicle VIN's or ID's in the Box separated by a Comma ( , ). <br>
+            Click Submit and the results for each Vehicle's Vital and sub-score breakdown will be
+            displayed below.
+        </p>
+    </div>
+    <div>
+        <form action="" method="post">
+            <label for="team_name">Enter Vehicle ID's or VIN (separate with a comma): </label>
+            <input id="vehicle_ids" type="text" name="vehicle_ids" value="" maxlength="3000" size="120" onkeyup="toggle_disable(this)">
+            <br/><br/>
+            <input id="submit_button" type="submit" value="Compare Scores" disabled="true"/>
+        </form>
+        <script>
+            function toggle_disable(txt_field) {
+                let submit_button = document.getElementById('submit_button');
+                if (txt_field.value != '') {
+                    submit_button.disabled = false;
+                }
+                else {
+                    submit_button.disabled = true;
+                }
+            }
+        </script>
+    </div>
+{% endblock %}

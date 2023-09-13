@@ -1,4 +1,4 @@
-{% extends "mfa_auth_base.html" %}
+{% extends "admin/base_site.html" %}
 {% block content %}
 <br/>
 <div class='container'>
@@ -16,6 +16,7 @@
               <li><a href="{% url "mfa_goto" method %}">
                   {% if method == "TOTP" %}{% if 'TOTP' in RENAME_METHODS %}{{ RENAME_METHODS.TOTP }}{% else %}Authenticator App{% endif %}
                   {% elif method == "Email" %}{% if 'Email' in RENAME_METHODS %}{{ RENAME_METHODS.Email }}{% else %}Send OTP by Email{% endif %}
+                  {% elif method == "Text" %}{% if 'Text' in RENAME_METHODS %}{{ RENAME_METHODS.Text }}{% else %}Send OTP by Text{% endif %}
                   {% elif method == "U2F" %}{% if 'U2F' in RENAME_METHODS %}{{ RENAME_METHODS.U2F }}{% else %}Secure Key{% endif %}
                   {% elif method == "FIDO2" %}{% if 'FIDO2' in RENAME_METHODS %}{{ RENAME_METHODS.FIDO2 }}{% else %}FIDO2 Secure Key{% endif %}
                   {% elif method == "RECOVERY" %}{% if 'RECOVERY' in RENAME_METHODS %}{{ RENAME_METHODS.RECOVERY }}{% else %}Recovery Code{% endif %}

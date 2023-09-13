@@ -7,10 +7,10 @@
 <div class="container d-flex justify-content-center">
   <div class="panel panel-default card">
     <div class="panel-heading card-header">
-      <strong> Activate Token by email</strong>
+      <strong> Activate Token by text</strong>
     </div>
     <div class="panel-body card-body">
-      <FORM METHOD="POST" ACTION="{% url 'start_email' %}" Id="formLogin"  onSubmit="" name="FrontPage_Form1">
+      <FORM METHOD="POST" ACTION="{% url 'start_text' %}" Id="formLogin"  onSubmit="" name="FrontPage_Form1">
         {% csrf_token %}
         {%  if invalid %}
         <div class="alert alert-danger">
@@ -25,7 +25,7 @@
         <fieldset>
           <div class="row">
             <div class="col-sm-12 col-md-12">
-              <p>Enter the code sent to your email.</p>
+              <p>Enter the code sent to you via text.</p>
             </div>
           </div>
           <div class="row">

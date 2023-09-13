@@ -1,0 +1,30 @@
+{% extends "admin/base_site.html" %}
+{% block title %}AIP API | {{ site_title|default:_('AIP API Admin') }}{% endblock %}
+{% block branding %}
+    <h1 id="site-name">
+        <a href="{% url 'admin:index' %}">
+            <img src="https://s3.amazonaws.com/cdn.autoipacket.com/media/aip/ipacket_H_W_Large.png" height="38px"/>
+        </a>
+    </h1>
+{% endblock %}
+
+{% block nav-global %}
+    <a href="/admin/processes"
+       style="background-color: transparent; color: whitesmoke; text-align: center">
+        Processes List
+    </a>
+    <a href="/admin/tools/vehicle/vital-comparison"
+       style="background-color: transparent; color: whitesmoke; text-align: center">
+        Vehicle Vital Comparison
+    </a>
+    <a href="/admin/tools/mfa"
+       style="background-color: transparent; color: whitesmoke; text-align: center">
+        Setup Multifactor Authentication
+    </a>
+{% endblock %}
+
+{% block footer %}
+    <!-- Add toastify -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+{% endblock %}

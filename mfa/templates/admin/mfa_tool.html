@@ -1,0 +1,48 @@
+{% extends "admin/base_site.html" %}
+{% load qr_code %}
+{% block content %}
+    <h1> Admin Page Multifactor Authentication Setup</h1>
+    <hr>
+    <div>
+        <p>
+            Please select from the list below the Multifactor authentication types you would like to use
+        </p>
+    </div>
+    <div>
+        <form action="{{ app_path }}" method="post" id="mfa-configuration">
+            <input type="checkbox" id="totp-status" name="totp" value="TOTP" {% if totp_enabled %}checked{% endif %}>
+            <label for="vehicle1">Time-Based One Time Password</label><br><br>
+            <input type="checkbox" id="email-status" name="email" value="Email" {% if email_enabled %}checked{% endif %}>
+            <label for="vehicle1">Email Code</label><br>
+            <p>Saved Email: {{ user_email }} </p>
+            <input type="checkbox" id="text-status" name="text" value="Text" {% if text_enabled %}checked{% endif %}>
+            <label for="vehicle1">Text Code</label><br>
+            <p>Saved Number: {{ user_phone }}</p>
+            <button class="btn btn-lg btn-success btn-block" type="submit">
+            Save
+            </button>
+        </form>
+        <br>
+        {% if totp_qr_code != '' %}
+            <br><br>
+            <h1>TOTP Authentication Code</h1>
+            <p>Code: {{ totp_secret }}</p>
+            {% qr_from_text totp_qr_code size="t" image_format="png" error_correction="l" %}
+            <br>
+            <small>Configure authenticator using and authenticator app such as
+                <a href="https://apps.apple.com/us/app/google-authenticator/id388497605">Google Authenticator</a>
+            </small>
+        {% endif %}
+        <script>
+            function toggle_disable(txt_field) {
+                let submit_button = document.getElementById('submit_button');
+                if (txt_field.value != '') {
+                    submit_button.disabled = false;
+                }
+                else {
+                    submit_button.disabled = true;
+                }
+            }
+        </script>
+    </div>
+{% endblock %}
